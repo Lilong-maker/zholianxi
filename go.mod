@@ -1,4 +1,4 @@
-module zholianxi
+module github.com/Lilong-maker/zholianxi
 
 go 1.24.10
 
