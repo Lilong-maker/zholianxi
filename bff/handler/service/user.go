@@ -29,7 +29,8 @@ func GoodsAdd(c *gin.Context) {
 		return
 	}
 
-	userId := c.GetString("userId")
+	uid, _ := c.Get("userId")
+	userId := uid.(string)
 	sprintf := fmt.Sprintf("idempotent:Goods_add:%s:%s", userId, form.Name)
 	lock, err := redis.RC.SetNX(context.Background(), sprintf, "1", 5*time.Minute).Result()
 	if err != nil {

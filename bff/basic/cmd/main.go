@@ -2,12 +2,16 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"zholianxi/bff/basic/config"
+
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
 	_ "zholianxi/bff/basic/init"
 	"zholianxi/bff/routers"
 )
@@ -19,7 +23,10 @@ func main() {
 		Addr:    ":8080",
 		Handler: r.Handler(),
 	}
+	config.Rdb.SAdd(context.Background(), "black:k1", "2")
 
+	strings, _ := config.Rdb.SMembers(context.Background(), "black:k1").Result()
+	fmt.Println(strings)
 	go func() {
 		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {

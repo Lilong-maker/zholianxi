@@ -59,7 +59,7 @@ func Loggers() gin.HandlerFunc {
 			})
 			c.Abort()
 		}
-		userId := getToken["userId"].(string)
+		userId := getToken["userId"]
 		trackData["user_id"] = userId
 		// 记录埋点日志
 		marshal, err := json.Marshal(trackData)

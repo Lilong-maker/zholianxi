@@ -16,7 +16,7 @@ func Router() *gin.Engine {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 
-	r.POST("GoodsAdd", middleware.Loggers(), middleware.Reg(), service.GoodsAdd)
+	r.POST("GoodsAdd", middleware.Logger(), middleware.Reg(), service.GoodsAdd)
 	r.POST("Login", service.Login)
 	r.POST("Uploads", service.Uploads)
 	r.POST("GetGoods", service.GetGoods)
